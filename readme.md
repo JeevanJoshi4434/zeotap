@@ -96,7 +96,7 @@ services:
       - "2355:2355"
     environment:
       NODE_ENV: development
-      REACT_APP_API_URL: http://localhost:2354
+      REACT_APP_API_URL: http://localhost3005
     deploy:
       replicas: 2
     depends_on:
@@ -146,9 +146,9 @@ volumes:
    ```
 
 2. Access the applications:
-   - Rule Engine Frontend: [http://localhost:2355](http://localhost:2355)
-   - Rule Engine Backend: [http://localhost:2354](http://localhost:2354)
-   - Weather Monitoring Frontend: [http://localhost:2353](http://localhost:2353)
+   - Rule Engine Frontend: [http://localhost3004](http://localhost3004)
+   - Rule Engine Backend: [http://localhost3005](http://localhost3005)
+   - Weather Monitoring Frontend: [http://localhost3003](http://localhost3003)
 
 ## Test Cases
 
