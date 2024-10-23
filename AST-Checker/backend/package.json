@@ -1,0 +1,33 @@
+{
+  "name": "ast-rule-engine",
+  "version": "1.0.0",
+  "description": "The AST-Based Rule Engine is a 3-tier system that allows users to define, combine, and evaluate complex business rules in a dynamic and flexible manner. The system uses an Abstract Syntax Tree (AST) to represent the structure of these rules, enabling efficient parsing, storage, modification, and evaluation.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "AST",
+    "AST-Based",
+    "Rule",
+    "Engine",
+    "Abstract",
+    "Syntax",
+    "Tree"
+  ],
+  "bin": {
+    "ast-engine": "./bin/cli.js"
+  },
+  "author": "Jeevan Joshi",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.7.1",
+    "nodemon": "^3.1.7"
+  }
+}
