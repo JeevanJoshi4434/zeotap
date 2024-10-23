@@ -1,8 +1,20 @@
-# Dockerfile for Node.js Backend (AST Rule Engine)
-FROM node:14
+# Use the latest stable Node.js image
+FROM node:latest
+
 WORKDIR /app
+
+# Copy the package.json and install dependencies
 COPY package*.json ./
 RUN npm install
+
+# Copy the rest of the application code
 COPY . .
-EXPOSE 2353
-CMD ["npm", "run", "start"]
+
+# Run the build command to prepare production-ready files
+RUN npm run build
+
+# Use the required port environment variable
+EXPOSE 3003
+
+# Start the app after building
+CMD ["npm", "start"]

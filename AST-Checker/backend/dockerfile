@@ -1,8 +1,8 @@
 # Dockerfile for Node.js Backend (AST Rule Engine)
-FROM node:14
+FROM node:latest
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-EXPOSE 2354
+EXPOSE 3005
 CMD ["npm", "run", "start"]

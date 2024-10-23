@@ -33,15 +33,15 @@ function App() {
   })
   const [selectedRules, setSelectedRules] = useState([]);
   const [combineRule, setCombineRule] = useState({
-    modal:false,
-    title:"",
-    upload:false,
-    error:""
+    modal: false,
+    title: "",
+    upload: false,
+    error: ""
   });
 
-  function handleCombineWindow(){
-    setCombineRule({...combineRule, modal:!combineRule.modal, title:""});
-  } 
+  function handleCombineWindow() {
+    setCombineRule({ ...combineRule, modal: !combineRule.modal, title: "" });
+  }
 
   const handleRuleSelection = (id) => {
     setSelectedRules((prevSelected) =>
@@ -50,12 +50,20 @@ function App() {
         : [...prevSelected, id]
     );
   };
-  
+
   const getString = async () => {
-    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/get/rules`);
-    const data = await response.data;
-    setData(data.rules);
-    setLoading(false);
+    try {
+
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/get/rules`);
+      const data = await response.data;
+      setData(data.rules);
+      setLoading(false);
+      
+    } catch (error) {
+      
+    }finally{
+      setLoading(false);
+    }
   }
 
   const groupRules = async () => {
@@ -64,23 +72,23 @@ function App() {
         window.alert("Select at least two rules to group.");
         return;
       }
-      setCombineRule({...combineRule, error:"", upload:true});
-      
+      setCombineRule({ ...combineRule, error: "", upload: true });
+
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/combineRule`, {
         ruleIds: selectedRules,
         combinedName: combineRule.title
       });
-      if(response.data.success){
-        setCombineRule({...combineRule, modal:!combineRule.modal, title:""});
+      if (response.data.success) {
+        setCombineRule({ ...combineRule, modal: !combineRule.modal, title: "" });
         getString();
-      }else{
-        setCombineRule({...combineRule, error:"Try Again!"});
+      } else {
+        setCombineRule({ ...combineRule, error: "Try Again!" });
       }
     } catch (error) {
       console.log(error);
-      setCombineRule({...combineRule, error:"Try Again!"});
-    }finally{
-      setCombineRule({...combineRule, error:"", upload:false});
+      setCombineRule({ ...combineRule, error: "Try Again!" });
+    } finally {
+      setCombineRule({ ...combineRule, error: "", upload: false });
     }
   };
 
@@ -222,11 +230,10 @@ function App() {
 
   return (
     <>
-       <nav className='flex items-center justify-between p-1 bg-black h-16'>
+      <nav className='flex items-center justify-between p-1 bg-black h-16'>
         <h1 className='text-white font-bold text-xl'>AST Rule Engine</h1>
         <div>
           <PiPlus color='white' onClick={handleOpenModal} />
-          <FaLayerGroup color='white' />
         </div>
       </nav>
       <div className='p-2 w-full h-screen'>

@@ -12,11 +12,9 @@ app.use(bodyParser.json());
 // Connect Database
 connectDB();
 
-app.use(cors(
-    {
-        origin: 'http://localhost:2355'
-    }
-));
+app.use(cors({
+    origin: ['http://localhost:3004', 'http://localhost:3000', 'http://localhost:3003']
+}));
 
 // Home route
 app.get('/', (req, res) => {
@@ -28,7 +26,7 @@ const ruleRoute = require('./routes/rule.route');
 app.use('/api', ruleRoute);
 
 // Start the server
-const PORT = process.env.SERVER_PORT || 2354;
+const PORT = process.env.SERVER_PORT || 3005;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

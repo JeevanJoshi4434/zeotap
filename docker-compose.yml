@@ -1,40 +1,40 @@
-version: '3.8'
+version: "3.8"
 services:
   frontend-react:
     build: ./AST-checker/frontend
     ports:
-      - "2355:2355"
+      - "3004:3000"
     environment:
       NODE_ENV: development
-      REACT_APP_API_URL: http://localhost:2354
+      REACT_APP_API_URL: http://localhost:3005
     deploy:
-      replicas: 2
+      replicas: 1
     depends_on:
       - backend-nodejs
 
   backend-nodejs:
     build: ./AST-checker/backend
     ports:
-      - "2354:2354"
+      - "3005:3005"
     environment:
       NODE_ENV: development
-      DATABASE_URL: mongodb://mongo:27017/mydatabase
-      SERVER_PORT: 2354
-      MONGO_URI: mongodb://mongo:27017/ast_rule_engine  # Use mongo service name instead of localhost
+      DATABASE_URL: mongodb://root:example@mongo:27017/mydatabase?authSource=admin
+      SERVER_PORT: 3005
+      MONGO_URI: mongodb://root:example@mongo:27017/ast_rule_engine?authSource=admin
     deploy:
-      replicas: 2
+      replicas: 1
     depends_on:
       - mongo
 
   frontend-nextjs:
     build: ./Weather-app/app
     ports:
-      - "2353:2353"
+      - "3003:3003"
     environment:
       NODE_ENV: development
       WEATHER_API_KEY: YOUR_WEATHER_API_KEY_HERE
     deploy:
-      replicas: 2
+      replicas: 1
 
   mongo:
     image: mongo:latest

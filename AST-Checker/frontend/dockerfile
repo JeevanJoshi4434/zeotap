@@ -1,8 +1,8 @@
 # Dockerfile for React Frontend (AST Rule Engine)
-FROM node:14
+FROM node:latest
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-EXPOSE 2355
+EXPOSE 3000
 CMD ["npm", "start"]
